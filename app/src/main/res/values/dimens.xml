@@ -2,4 +2,7 @@
 <resources>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="form_field_title">1</dimen>
+    <dimen name="form_field_value">2</dimen>
 </resources>
