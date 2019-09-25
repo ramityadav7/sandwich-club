@@ -16,6 +16,15 @@
             android:adjustViewBounds="true"
             android:contentDescription="@string/sandwich_picture_content_description"
             android:scaleType="centerCrop" />
+      <RelativeLayout
+          android:id="@+id/progress_rl"
+          android:layout_width="match_parent"
+          android:layout_height="200dp">
+          <ProgressBar
+              android:layout_width="48dp"
+              android:layout_height="48dp"
+              android:layout_centerInParent="true"/>
+      </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/origin_ll"

@@ -7,9 +7,11 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
@@ -29,6 +31,7 @@ public class DetailActivity extends AppCompatActivity {
     private TextView mIngredientTv;
     private LinearLayout mDescriptionLl;
     private TextView mDescriptionTv;
+    private RelativeLayout mProgressRl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +79,7 @@ public class DetailActivity extends AppCompatActivity {
         mIngredientTv = findViewById(R.id.ingredients_tv);
         mDescriptionLl = findViewById(R.id.description_ll);
         mDescriptionTv = findViewById(R.id.description_tv);
+        mProgressRl = findViewById(R.id.progress_rl);
     }
 
     private void closeOnError() {
@@ -88,7 +92,17 @@ public class DetailActivity extends AppCompatActivity {
         if(sandwich != null) {
             Picasso.with(this)
                     .load(sandwich.getImage())
-                    .into(mIngredientsIv);
+                    .into(mIngredientsIv, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            mProgressRl.setVisibility(View.GONE);
+                        }
+
+                        @Override
+                        public void onError() {
+                            mProgressRl.setVisibility(View.GONE);
+                        }
+                    });
 
 
             populateView(mOriginLl, mOriginTv, sandwich.getPlaceOfOrigin());
